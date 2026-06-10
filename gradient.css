@@ -1,0 +1,10 @@
+h1{
+    height: 10cm ;
+    background: linear-gradient(32deg,lightgreen,lightblue,lightpink);
+} 
+body{
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
