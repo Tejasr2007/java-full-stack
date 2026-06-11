@@ -1,79 +1,326 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Madhan</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern My Self Profile | P Tejasree</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --card: #ffffff;
+      --accent: #2563eb;
+      --accent-2: #22d3ee;
+      --text: #172033;
+      --muted: #4b5563;
+      --border: #dbe5f0;
+      --shadow: 0 14px 35px rgba(7, 17, 31, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, #dbeafe 0%, #eff6ff 32%, #f8fbff 100%);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1100px, 96%);
+      margin: 0 auto;
+      padding: 22px 0 36px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #07111f 0%, #111827 45%, #172554 100%);
+      color: #fff;
+      border-radius: 24px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 24px;
+      align-items: center;
+      box-shadow: 0 18px 42px rgba(15, 23, 42, 0.22);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(10px);
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 180px; height: 180px; right: -30px; top: -50px; background: #22d3ee;
+    }
+
+    .hero::after {
+      width: 140px; height: 140px; left: -25px; bottom: -35px; background: #818cf8;
+    }
+
+    .photo-card {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      background: rgba(15, 23, 42, 0.35);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 18px;
+      padding: 16px;
+      backdrop-filter: blur(8px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .photo-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #38bdf8, #2563eb);
+      border: 4px solid #fff;
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+    }
+
+    .photo-note { color: #dbeafe; font-size: 0.95rem; }
+
+    .intro h1 { margin: 0; font-size: clamp(1.9rem, 6vw, 2.9rem); }
+    .intro p { color: #dbeafe; margin-top: 6px; }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 14px;
+      padding: 10px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .stat-card strong { display: block; color: #fff; font-size: 1.02rem; }
+    .stat-card span { color: #dbeafe; font-size: 0.92rem; }
+
+    .chip-row {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px;
+    }
+
+    .chip {
+      padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.15); font-size: 0.95rem;
+    }
+
+    main { display: grid; gap: 16px; margin-top: 18px; }
+
+    .accordion-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      border: 1px solid var(--border); border-radius: 18px;
+      box-shadow: var(--shadow); overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .accordion-card:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(15, 23, 42, 0.16); }
+
+    .accordion {
+      width: 100%; background: linear-gradient(135deg, #eff6ff, #ffffff); border: none;
+      text-align: left; padding: 14px 16px; font-size: 1.02rem; font-weight: 700;
+      color: #111827; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      transition: background 0.25s ease, transform 0.2s ease;
+      letter-spacing: 0.2px;
+    }
+
+    .accordion:hover { background: linear-gradient(135deg, #dbeafe, #eff6ff); transform: translateY(-1px); }
+    .accordion.active { background: linear-gradient(135deg, #dbeafe, #eef6ff); }
+    .accordion::after { content: "+"; font-size: 1.1rem; color: var(--accent); transition: transform 0.25s ease; }
+    .accordion.active::after { transform: rotate(45deg); }
+
+    .accordion-panel {
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
+      padding: 0 16px;
+    }
+
+    .accordion-panel.open {
+      max-height: 420px; opacity: 1; padding: 0 16px 14px;
+    }
+
+    .panel-body { color: var(--muted); }
+
+    .panel-body ul { margin: 0; padding-left: 18px; }
+    .panel-body li { margin-bottom: 8px; }
+
+    .contact-box {
+      background: linear-gradient(135deg, #ecfeff, #f8fbff); border: 1px solid #dbe5f0;
+      border-radius: 14px; padding: 10px 12px; margin-bottom: 8px;
+    }
+
+    .contact-box strong { color: #111827; }
+
+    footer { text-align: center; color: var(--muted); font-size: 0.95rem; padding-top: 8px; }
+
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } .intro { text-align: center; } .chip-row { justify-content: center; } }
+    @media (max-width: 480px) { .container { width: 98%; } .hero, .accordion-card { border-radius: 14px; } .photo-circle { width: 120px; height: 120px; font-size: 1.8rem; } }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <header class="hero">
+      <article class="photo-card" aria-label="Profile photo section">
+        <div class="photo-circle">PT</div>
+        <div class="photo-note">Profile Photo</div>
+      </article>
 
-```
-<h1>Self-Intro</h1>
-<hr>
+      <article class="intro">
+        <h1>P Tejasree</h1>
+        <p>Creative B.Tech CSE student with a strong interest in web development, coding, and practical software solutions.</p>
+        <div class="chip-row">
+          <span class="chip">HTML</span>
+          <span class="chip">CSS</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">Java</span>
+          <span class="chip">MySQL</span>
+        </div>
+        <div class="mini-stats">
+          <div class="stat-card"><strong>Web</strong><span>Development</span></div>
+          <div class="stat-card"><strong>Projects</strong><span>2+ mini apps</span></div>
+          <div class="stat-card"><strong>Goal</strong><span>Software Developer</span></div>
+        </div>
+      </article>
+    </header>
 
-<h2>Tejasree</h2>
+    <main>
+      <section class="accordion-card">
+        <button class="accordion" type="button" aria-expanded="false">About Me</button>
+        <div class="accordion-panel">
+          <div class="panel-body">
+            <p>I am a motivated student pursuing B.Tech in Computer Science and Engineering. I enjoy learning web technologies, creating simple projects, and solving real-world problems with coding.</p>
+          </div>
+        </div>
+      </section>
 
-<p>
-    I am <b>Tejasree</b>. I am doing <u>B.Tech</u> 3<sup>rd</sup> year in the field of
-    <i>CSE</i> at Mother Theresa Engineering College, Melumoi.
-    <br>
-    I have participated in a
-    <strong><em>Hackathon</em></strong>,
-    which is an intra-college <small>competition</small>.
-</p>
+      <section class="accordion-card">
+        <button class="accordion" type="button" aria-expanded="false">Education</button>
+        <div class="accordion-panel">
+          <div class="panel-body">
+            <ul>
+              <li><strong>Course:</strong> B.Tech CSE</li>
+              <li><strong>College:</strong> [Enter your college name here]</li>
+              <li><strong>Focus:</strong> Programming, Web Development, Database Management</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-<h3>Programming Languages</h3>
+      <section class="accordion-card">
+        <button class="accordion" type="button" aria-expanded="false">Skills</button>
+        <div class="accordion-panel">
+          <div class="panel-body">
+            <ul>
+              <li>HTML for structured web pages</li>
+              <li>CSS for responsive and attractive design</li>
+              <li>JavaScript for interactive user experience</li>
+              <li>Java and MySQL for backend and database learning</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-<ol>
-    <li>C</li>
-    <li>Java</li>
-    <li>Python</li>
-</ol>
+      <section class="accordion-card">
+        <button class="accordion" type="button" aria-expanded="false">Projects</button>
+        <div class="accordion-panel">
+          <div class="panel-body">
+            <ul>
+              <li><strong>Employee Leave Management System</strong> – helps manage leave requests efficiently.</li>
+              <li><strong>Library Management System</strong> – stores books, members, and issue/return records.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-<h3>5<sup>th</sup> Semester Marks</h3>
+      <section class="accordion-card">
+        <button class="accordion" type="button" aria-expanded="false">Hobbies</button>
+        <div class="accordion-panel">
+          <div class="panel-body">
+            <ul>
+              <li>Reading technical articles and coding blogs</li>
+              <li>Listening to music</li>
+              <li>Exploring new technologies and building mini projects</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>Subject</th>
-            <th>Marks</th>
-            <th>Grade</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>DBMS</td>
-            <td>89</td>
-            <td>A</td>
-        </tr>
-        <tr>
-            <td>SE</td>
-            <td>99</td>
-            <td>S</td>
-        </tr>
-        <tr>
-            <td>OS</td>
-            <td>80</td>
-            <td>B</td>
-        </tr>
-        <tr>
-            <td>CN</td>
-            <td>76</td>
-            <td>B</td>
-        </tr>
-        <tr>
-            <td>DS</td>
-            <td>78</td>
-            <td>B</td>
-        </tr>
-    </tbody>
-</table>
+      <section class="accordion-card">
+        <button class="accordion" type="button" aria-expanded="false">Achievements</button>
+        <div class="accordion-panel">
+          <div class="panel-body">
+            <ul>
+              <li>Completed beginner-friendly web development practice</li>
+              <li>Built small academic projects using Java, HTML, CSS, and MySQL</li>
+              <li>Improved coding, communication, and problem-solving skills</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-<br>
+      <section class="accordion-card">
+        <button class="accordion" type="button" aria-expanded="false">Contact Details</button>
+        <div class="accordion-panel">
+          <div class="panel-body">
+            <div class="contact-box"><strong>Email:</strong> tejasree@example.com</div>
+            <div class="contact-box"><strong>Phone:</strong> +91 98765 43210</div>
+            <div class="contact-box"><strong>Location:</strong> Hyderabad, India</div>
+          </div>
+        </div>
+      </section>
+    </main>
 
-<a href="form.html" target="_blank">Form</a>
-```
+    <footer>Created as a modern, responsive accordion-style profile webpage.</footer>
+  </div>
 
+  <script>
+    const buttons = document.querySelectorAll('.accordion');
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const panel = button.nextElementSibling;
+        const isOpen = button.classList.contains('active');
+
+        buttons.forEach((item) => {
+          item.classList.remove('active');
+          item.setAttribute('aria-expanded', 'false');
+          const currentPanel = item.nextElementSibling;
+          currentPanel.classList.remove('open');
+          currentPanel.style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          button.classList.add('active');
+          button.setAttribute('aria-expanded', 'true');
+          panel.classList.add('open');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
