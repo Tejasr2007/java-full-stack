@@ -38,3 +38,26 @@ for(let i=1;i<=30;)
     console.log("day "+i+" completed");
     i++;
 }
+function cook()
+{
+    console.log("pour the batter into the pan");
+    console.log("cook until golden brown");
+    console.log("flip the pancake and cook the other side");
+    console.log("serve hot with syrup");
+}
+for(let i=1;i<=3;i++){
+cook();} 
+function dishwash(vessels){
+    console.log("we have to wash "+vessels+" vessels");
+}
+dishwash(2); 
+function num(n)
+{
+    if(n>10){
+        return;
+    }
+    console.log(n);
+    n+=1;
+    num(n);
+}
+num(1);
