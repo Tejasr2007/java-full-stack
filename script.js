@@ -1,4 +1,4 @@
-let name="tejasree";
+/*let name="tejasree";
 var age=19;
 const height=5.4;
 console.log(age);
@@ -60,4 +60,28 @@ function num(n)
     n+=1;
     num(n);
 }
-num(1);
+num(1);*/
+/*function guess(n) {
+    let userGuess = Number(prompt("Enter a number:"));
+
+    if (userGuess == n) {
+        console.log("Congratulations! You guessed the number.");
+    } else if (userGuess < n) {
+        console.log("Too low! Try again.");
+        guess(n);
+    } else {
+        console.log("Too high! Try again.");
+        guess(n);
+    }
+}
+
+let number = Math.floor(Math.random() * 100) + 1;
+guess(number);*/
+let chocolates=["dairy milk","perk","kitkat","munch"];
+let sales={
+    tejasree:chocolates[0],
+    shalini:chocolates[1],
+    nandini:chocolates[2],
+    bhavya:chocolates[3]
+};
+console.log(sales.bhavya);
