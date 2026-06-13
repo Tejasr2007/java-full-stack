@@ -1,12 +1,5 @@
-/* let great = document.getElementById("birthday-greeting");
-console.log(great.innerText); */
-let pen = document.getElementById("birthday-greeting");
-console.log(pen);
-let mouse= document.getElementById("birthday-greeting");
-console.log(mouse);
-let cable = document.getElementById("div");
-console.log(cable);
-let water = document.getElementById("#content");
-console.log(water);
-let queries = document.querySelector("p");
-console.log(queries);
+/*let value = document.getElementById("birthday-greeting").innerText= "happy birthday to you...💖💖";*/
+let value1 = document.getElementById("birthday-greeting");
+value1.innerText = "happy birthday to me...💖💖";
+value1.innerHTML = "<h1>happy birthday to me...💖💖</h1>";
+value1.style.color = "brown";
